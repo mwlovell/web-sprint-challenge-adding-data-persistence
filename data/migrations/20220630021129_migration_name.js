@@ -41,14 +41,12 @@ exports.up = async function(knex) {
   })
   };
   exports.down = async function(knex) {
-    return await knex.schema
-    
-    .dropTableIfExists('projects')
+    await knex.schema
 
-    .dropTableIfExists('resources')
-
-    .dropTableIfExists('tasks')
-
-    .dropTableIfExists('project_resources')
+   .dropTableIfExists('project_resources')
+   .dropTableIfExists('tasks')
+   .dropTableIfExists('resources')
+   .dropTableIfExists('projects')
+   
 };
 
