@@ -14,4 +14,4 @@ async function insert(project) {
 module.exports = {
     getProjects, 
     insert
-} 
+}

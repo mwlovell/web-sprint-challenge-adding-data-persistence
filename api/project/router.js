@@ -1,13 +1,12 @@
 const express = require('express'); 
 const Projects = require('./model'); 
-
 const router = require('express').Router()
 
 
 router.post('/', (req, res, next) => {
     Projects.insert(req.body)
     .then(project => {
-        if (project.project_completed ===0){
+        if (project.project_completed === 0){
             project.project_completed = false;
             res.status(201).json(project);
         }else {
@@ -22,10 +21,12 @@ router.get('/', async  (req,res,next) => {
     await Projects.getProjects()
     .then(projects => {
         projects.map(project => {
+        
             if(project.project_completed === 0){
-                project.project_description = false 
+                project.project_completed = false 
             } else {
-                project.project_description = true
+                project.project_completed = true
+                
             }
         })
         res.status(200).json(projects)
@@ -34,6 +35,4 @@ router.get('/', async  (req,res,next) => {
 })
 
 
-
-
-module.exports = router  
+module.exports = router 

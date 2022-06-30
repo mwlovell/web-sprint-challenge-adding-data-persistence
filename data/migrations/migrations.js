@@ -22,7 +22,7 @@ exports.up = async function(knex) {
               .notNullable()
               .references('project_id')
               .inTable('projects')
-  
+          
   }) 
       .createTable('project_resources', table => {
           table.increments('project_resource_id')
@@ -39,14 +39,18 @@ exports.up = async function(knex) {
               .inTable('resources')
               .onDelete('CASCADE')
   })
+  
   };
+  
+  
   exports.down = async function(knex) {
-    await knex.schema
-
-   .dropTableIfExists('project_resources')
-   .dropTableIfExists('tasks')
-   .dropTableIfExists('resources')
-   .dropTableIfExists('projects')
-   
-};
-
+       await knex.schema
+  
+     //these need to be in order , from bottom to top 
+      .dropTableIfExists('project_resources')
+      .dropTableIfExists('tasks')
+      .dropTableIfExists('resources')
+      .dropTableIfExists('projects')
+  };
+ 
+  

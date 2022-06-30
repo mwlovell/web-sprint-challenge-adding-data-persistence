@@ -3,7 +3,6 @@ const Resource = require('./model');
 const router = require('express').Router()
 
 
-
 router.get('/', (req,res,next) => {
     Resource.getResources()
     .then(resource => {
@@ -13,7 +12,7 @@ router.get('/', (req,res,next) => {
 })
 
 router.post('/', (req, res, next) => {
-    Resource.createResource(req.body)
+    Resource.insert(req.body)
     .then(resource => {
       res.status(200).json(resource)
     })
